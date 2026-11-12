@@ -1,0 +1,11 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="app.css"><style>body{padding:24px}.opt{background:#fff;border:1px solid #e3e8ee;border-radius:12px;padding:14px;margin:0 0 12px}</style></head><body>
+<h2>Set up Sales Tracker</h2><p class="sub">Is this the PC that keeps the data, or does it connect to another PC?</p>
+<div class="opt"><label style="display:flex;gap:8px"><input type="radio" name="m" value="host" checked style="width:auto"> <b>Host</b> — this PC keeps the database (use on one PC, or the main PC)</label>
+<label>Data folder<input id="dir"></label><button class="sec" id="pick">Browse...</button></div>
+<div class="opt"><label style="display:flex;gap:8px"><input type="radio" name="m" value="client" style="width:auto"> <b>Client</b> — connect to the Host PC</label>
+<label>Host address (shown on the Host under File &gt; Show address)<input id="url" placeholder="http://192.168.1.10:3737"></label></div>
+<p class="err" id="err"></p><button id="go">Continue</button>
+<script>const $=s=>document.querySelector(s);let prev;window.setup.init().then(i=>{prev=i.prev;$('#dir').value=(i.prev&&i.prev.dataDir)||i.defaultDataDir;if(i.prev&&i.prev.mode==='client'){document.querySelector('[value=client]').checked=true;$('#url').value=i.prev.hostUrl||''}});
+$('#pick').onclick=async()=>{const d=await window.setup.pick();if(d)$('#dir').value=d};
+$('#go').onclick=async()=>{const mode=document.querySelector('[name=m]:checked').value;let c={mode};if(mode==='host')c.dataDir=$('#dir').value.trim();else{let u=$('#url').value.trim().replace(/\/+$/,'');if(u&&!/^https?:\/\//.test(u))u='http://'+u;c.hostUrl=u}
+if((mode==='host'&&!c.dataDir)||(mode==='client'&&!c.hostUrl)){$('#err').textContent='Please fill in the field.';return}$('#go').disabled=true;$('#err').textContent='';const r=await window.setup.save(c);if(r&&r.error){$('#err').textContent=r.error;$('#go').disabled=false}};</script></body></html>

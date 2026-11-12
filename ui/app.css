@@ -1,0 +1,28 @@
+:root{--bg:#f4f6f9;--card:#fff;--ink:#1d2733;--mut:#6b7785;--line:#e3e8ee;--pri:#1f4e79;--pri2:#2b6cb0;--ok:#2f855a;--warn:#b7791f;--bad:#c53030}
+*{box-sizing:border-box}body{margin:0;font:14px/1.45 "Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(--ink)}
+.layout{display:flex;min-height:100vh}.side{width:220px;background:var(--pri);color:#fff;padding:18px 12px;display:flex;flex-direction:column;gap:4px;flex-shrink:0}
+.side h1{font-size:18px;margin:0 8px 16px}.side a{color:#dbe7f3;text-decoration:none;padding:9px 12px;border-radius:8px;display:flex;gap:10px;align-items:center;cursor:pointer}
+.side a:hover,.side a.on{background:rgba(255,255,255,.16);color:#fff}.side .sp{flex:1}.side .who{font-size:12px;padding:8px 12px;color:#bcd0e4}
+.main{flex:1;padding:24px 28px;min-width:0}h2{margin:0 0 4px;font-size:22px}.sub{color:var(--mut);margin:0 0 18px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:0 0 18px}.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;animation:fade .25s}
+.card p{margin:0;color:var(--mut);font-size:12px}.card b{font-size:22px}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+button,.btn{font:inherit;border:1px solid var(--pri);background:var(--pri);color:#fff;padding:7px 14px;border-radius:8px;cursor:pointer;transition:.15s}
+button:hover{background:var(--pri2)}button.sec{background:#fff;color:var(--pri)}button.sec:hover{background:#eef3f8}button.danger{color:var(--bad);border-color:var(--bad);background:#fff}button:disabled{opacity:.5;cursor:default}
+.bar{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px;align-items:center}
+.tw{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:auto;max-height:68vh}table{border-collapse:collapse;width:100%}th{position:sticky;top:0;background:#f0f4f8;text-align:left;font-size:12px;color:#44546a;padding:9px 10px;white-space:nowrap}
+td{padding:7px 10px;border-top:1px solid var(--line);white-space:nowrap}td.n{text-align:right}tr.wait td{background:#fffbea}tr.err td{background:#fff1f1}tr.dup td{background:#fff6e5}
+td input,td select{width:100%;min-width:70px;padding:5px 6px;border:1px solid var(--line);border-radius:6px;font:inherit}tr.new td{background:#eef6ff}
+input,select{font:inherit;padding:7px 9px;border:1px solid #cbd5e0;border-radius:8px}label{display:block;margin:0 0 10px;font-size:12px;color:var(--mut)}label input,label select{display:block;width:100%;margin-top:3px;color:var(--ink);font-size:14px}
+.pill{padding:2px 9px;border-radius:99px;font-size:12px;background:#e8eef5}.s-delivered,.s-completed{background:#dff3e6}.s-return,.s-failed-delivery{background:#fde2e2}.s-shipping{background:#e3effd}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}.tile{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;cursor:pointer;transition:.15s}.tile:hover{border-color:var(--pri2);transform:translateY(-1px)}.tile small{display:block;color:var(--warn)}
+.modal{position:fixed;inset:0;background:rgba(15,25,40,.45);display:flex;align-items:center;justify-content:center;z-index:10}.modal.hidden,.toast.hidden{display:none}
+.box{background:#fff;border-radius:14px;padding:22px;width:min(1100px,94vw);max-height:90vh;overflow:auto}.box.s{width:min(460px,94vw)}.box h3{margin:0 0 12px}
+.toast{position:fixed;bottom:20px;right:20px;background:#1d2733;color:#fff;padding:10px 16px;border-radius:10px;z-index:20}.toast.bad{background:var(--bad)}
+.login{max-width:380px;margin:12vh auto;background:#fff;padding:28px;border-radius:14px;border:1px solid var(--line)}.err{color:var(--bad)}.muted{color:var(--mut)}
+.steps{display:flex;gap:8px;margin:0 0 14px}.steps span{padding:4px 12px;border-radius:99px;background:#e8eef5;font-size:12px}.steps .on{background:var(--pri);color:#fff}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:800px){.side{width:64px}.side a span,.side h1,.side .who{display:none}.main{padding:14px}}
+
+.box select[multiple]{min-height:90px}.noprint{}
+@media print{body *{visibility:hidden}.printable,.printable *{visibility:visible}.printable{position:absolute;left:0;top:0;width:100%;padding:16px}.noprint{display:none!important}.modal{background:#fff;position:absolute}.box{max-height:none;overflow:visible}}

@@ -1,0 +1,64 @@
+{
+  "name": "sales-tracker-desktop",
+  "productName": "Sales Tracker",
+  "version": "1.1.0",
+  "description": "Sales Tracker desktop app with Excel import/export",
+  "private": true,
+  "main": "main.js",
+  "author": "Sales Tracker",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test test/*.test.js",
+    "serve": "node src/server.js",
+    "dist": "electron-builder --win nsis portable --x64"
+  },
+  "dependencies": {
+    "jszip": "^3.10.2"
+  },
+  "devDependencies": {
+    "electron": "^38.2.0",
+    "electron-builder": "^26.0.0"
+  },
+  "build": {
+    "appId": "com.salestracker.desktop",
+    "productName": "Sales Tracker",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**/*",
+      "ui/**/*",
+      "build/icon.png",
+      "package.json"
+    ],
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "portable": {
+      "artifactName": "SalesTracker-Portable.exe"
+    }
+  }
+}
